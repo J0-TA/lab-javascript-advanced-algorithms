@@ -1,29 +1,30 @@
 let queue = new QueueDataStructure ()
 
 let queueInput = document.querySelector(`.queuesColum input`);
-let queueAddBtn = document.getElementById(`qdadd`).addEventListener(`click`, addItem);
-let stackTakeBtn = document.getElementById(`qdtake`).addEventListener(`click`, removeItem);
+let queueAddBtn = document.querySelector(`#qdadd`).addEventListener(`click`, addQueueItem);
+let queueTakeBtn = document.querySelector(`#qdtake`).addEventListener(`click`, removeQueueItem);
 
-function addItem(){
-    let emptyQueues = document.querySelectorAll(`.queue`);
-    console.log(emptyStacks)
-    if(stack.canPush()){
-        stackValue = stackInput.value;
-        emptyStacks[emptyStacks.length-1].innerHTML = stackValue;
-        emptyStacks[emptyStacks.length-1].classList.remove(`empty`);
-        emptyStacks[emptyStacks.length-1].classList.add(`full`);
-        stack.push(stackValue);
-    } else window.alert(`Stack Overflow!`)
+function addQueueItem(){
+    emptyQueues = document.querySelectorAll(`.queue`);
+    fullQueues = document.querySelectorAll(`.full`)
+    console.log(emptyQueues)
+    if(queue.canEnqueue()){
+        queueValue = queueInput.value;
+        emptyQueues[emptyQueues.length - fullQueues.length].innerHTML = queueValue;
+        emptyQueues[0].classList.remove(`empty`);
+        emptyQueues[0].classList.add(`full`);
+        queue.enqueue(queueValue);
+    } else window.alert(`Queue Overflow!`)
 }
 
-function removeItem(){
-    fullStacks = document.querySelectorAll(`.full`);
-    if (stack.isEmpty()) {
+function removeQueueItem(){
+    fullQueues = document.querySelectorAll(`.full`);
+    if (queue.isEmpty()) {
         window.alert(`Oops! You can't remove anything!`)
     } else {
-        fullStacks[0].innerHTML="";
-        fullStacks[0].classList.remove(`full`);
-        fullStacks[0].classList.add(`empty`)
-        stack.pop();
+        fullQueues[fullQueues.length-1].innerHTML="";
+        fullQueues[fullQueues.length-1].classList.remove(`full`);
+        fullQueues[fullQueues.length-1].classList.add(`empty`)
+        stack.dequeue();
     }
 }
